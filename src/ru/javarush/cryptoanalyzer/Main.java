@@ -5,7 +5,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -14,7 +13,7 @@ public class Main {
     static final String CHOOSE_LANGUAGE = "Выберете язык текста:" + "\n" + "1. Русский" + "\n" + "2. English";
     static final String CHOOSE_MODE = "Выберете режим работы приложения:" + "\n" + "\n" + "1. Шифрование данных" + "\n" + "2. Дешифровка данных" + "\n" + "3. Brut force";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 //        Application.launch(args);
         System.out.println(CHOOSE_MODE);
 

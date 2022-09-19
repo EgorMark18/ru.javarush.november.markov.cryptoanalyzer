@@ -9,16 +9,26 @@ public class BrutForce {
     static char letter;
     static int a = 0;
 
-    public static void brut_force_en() throws FileNotFoundException, IOException {
+    public static void brut_force_en() {
 
         System.out.println("Укажите полной путь к файлу");
 
         Scanner scanner = new Scanner(System.in);
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         StringBuilder new_string = new StringBuilder();
         ArrayList<Character> repeat = new ArrayList<Character>();
 
-        while ((a = bufferedReader.read()) != -1) {
+        while (true) {
+            try {
+                if ((a = bufferedReader.read()) == -1) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             letter = (char) a;
             repeat.add(letter);
         }
@@ -44,16 +54,26 @@ public class BrutForce {
         }
     }
 
-    public static void brut_force_ru() throws FileNotFoundException, IOException {
+    public static void brut_force_ru() {
 
         System.out.println("Укажите полной путь к файлу");
 
         Scanner scanner = new Scanner(System.in);
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(scanner.nextLine()));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         StringBuilder new_string = new StringBuilder();
         ArrayList<Character> repeat = new ArrayList<Character>();
 
-        while ((a = bufferedReader.read()) != -1) {
+        while (true) {
+            try {
+                if ((a = bufferedReader.read()) == -1) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             letter = (char) a;
             repeat.add(letter);
         }

@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Decryption {
-    public static void decryption_ru() throws FileNotFoundException, IOException {
+    public static void decryption_ru() {
         char letter;
         int key = 0;
         int a = 0;
@@ -35,7 +35,12 @@ public class Decryption {
 
         }
 
-        while ((a = bufferedReader.read()) != -1) {
+        while (true) {
+            try {
+                if ((a = bufferedReader.read()) == -1) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             letter = (char) a;
             if (ChooseLanguage.Alphabet.ru_alphabet.contains(letter)){
                 int orig_position = ChooseLanguage.Alphabet.ru_alphabet.indexOf(letter);
@@ -48,11 +53,20 @@ public class Decryption {
             }
             else new_string.append(letter);
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(file_name + "_decryption");
-        fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file_name + "_decryption");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static void decryption_en() throws IOException {
+    public static void decryption_en() {
         char letter;
         int key = 0;
         int a = 0;
@@ -82,7 +96,12 @@ public class Decryption {
 
         }
 
-        while ((a = bufferedReader.read()) != -1) {
+        while (true) {
+            try {
+                if (!((a = bufferedReader.read()) != -1)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             letter = (char) a;
             if (ChooseLanguage.Alphabet.en_alphabet.contains(letter)){
                 int orig_position = ChooseLanguage.Alphabet.en_alphabet.indexOf(letter);
@@ -95,7 +114,16 @@ public class Decryption {
             }
             else new_string.append(letter);
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(file_name + "_decryption");
-        fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file_name + "_decryption");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
