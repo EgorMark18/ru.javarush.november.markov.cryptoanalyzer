@@ -6,25 +6,25 @@ import java.util.Scanner;
 
 public class Encryption {
 
-    public static void encryption_ru() {
+    public static void encryptionRu() {
         char letter;
         int key = 0;
-        int a = 0;
+        int reedLetter = 0;
 
-        System.out.println("\n" + "Укажите полный путь к файлу");
+        System.out.println("" + "\n" + "Укажите полный путь к файлу");
 
         Scanner scanner = new Scanner(System.in);
-        String file_name = null;
+        String fileName = null;
         BufferedReader bufferedReader = null;
         try {
-            file_name = scanner.nextLine();
-            bufferedReader = new BufferedReader(new FileReader(file_name));
+            fileName = scanner.nextLine();
+            bufferedReader = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e) {
             System.out.println(" ");
             System.out.println("Такого пути не существует" + "\n" + "\n" + "____________________" + "\n");
-            encryption_ru();
+            encryptionRu();
         }
-        StringBuilder new_string = new StringBuilder();
+        StringBuilder newString = new StringBuilder();
 
         System.out.println("\n" + "Укажите ключ шифрования");
         try {
@@ -32,56 +32,60 @@ public class Encryption {
         } catch (Exception e) {
             System.out.println(" ");
             System.out.println("Ключ должен быть числом, давайте начнем заново");
-            encryption_ru();
+            encryptionRu();
 
         }
 
         while (true) {
             try {
-                if (!((a = bufferedReader.read()) != -1)) break;
+                if (!((reedLetter = bufferedReader.read()) != -1)) break;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            letter = (char) a;
-            if (ChooseLanguage.Alphabet.ru_alphabet.contains(letter)){
-                int orig_position = ChooseLanguage.Alphabet.ru_alphabet.indexOf(letter);
-                int new_position = (orig_position + key) % ChooseLanguage.Alphabet.ru_alphabet.size();
-                char new_letter = ChooseLanguage.Alphabet.ru_alphabet.get(new_position);
-                new_string.append(new_letter);
-            }
-                else new_string.append(letter);
+            letter = (char) reedLetter;
+            if (ChooseLanguage.Alphabet.ruAlphabet.contains(letter)) {
+                int origPosition = ChooseLanguage.Alphabet.ruAlphabet.indexOf(letter);
+                int newPosition = (origPosition + key) % ChooseLanguage.Alphabet.ruAlphabet.size();
+                char newLetter = ChooseLanguage.Alphabet.ruAlphabet.get(newPosition);
+                newString.append(newLetter);
+            } else newString.append(letter);
         }
         FileOutputStream fileOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream(file_name + "_cipher");
+            fileOutputStream = new FileOutputStream(fileName.substring(0, (fileName.lastIndexOf('.'))) + "_cipher"
+                    + fileName.substring((fileName.lastIndexOf('.'))));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         try {
-            fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+            fileOutputStream.write(newString.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("____________________________");
+        System.out.println("Шифрование выполнено успешно " + "\u2705");
+        System.out.println("Файл с зашифрованным успешно создан " + "\u2705");
     }
-    public static void encryption_en() {
+
+    public static void encryptionEn() {
         char letter;
         int key = 0;
-        int a = 0;
+        int reedLetter = 0;
 
         System.out.println("Укажите полный путь к файлу");
 
         Scanner scanner = new Scanner(System.in);
-        String file_name = null;
+        String fileName = null;
         BufferedReader bufferedReader = null;
         try {
-            file_name = scanner.nextLine();
-            bufferedReader = new BufferedReader(new FileReader(file_name));
+            fileName = scanner.nextLine();
+            bufferedReader = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e) {
             System.out.println(" ");
             System.out.println("Такого пути не существует" + "\n" + "\n" + "____________________" + "\n");
-            encryption_en();
+            encryptionEn();
         }
-        StringBuilder new_string = new StringBuilder();
+        StringBuilder newString = new StringBuilder();
 
         System.out.println("Укажите ключ шифрования");
         try {
@@ -89,36 +93,39 @@ public class Encryption {
         } catch (Exception e) {
             System.out.println(" ");
             System.out.println("Ключ должен быть числом, давайте начнем заново");
-            encryption_en();
+            encryptionEn();
 
         }
 
         while (true) {
             try {
-                if (!((a = bufferedReader.read()) != -1)) break;
+                if (!((reedLetter = bufferedReader.read()) != -1)) break;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            letter = (char) a;
-            if (ChooseLanguage.Alphabet.en_alphabet.contains(letter)){
-                int orig_position = ChooseLanguage.Alphabet.en_alphabet.indexOf(letter);
-                int new_position = (orig_position + key) % ChooseLanguage.Alphabet.en_alphabet.size();
-                char new_letter = ChooseLanguage.Alphabet.en_alphabet.get(new_position);
-                new_string.append(new_letter);
-            }
-            else new_string.append(letter);
+            letter = (char) reedLetter;
+            if (ChooseLanguage.Alphabet.enAlphabet.contains(letter)) {
+                int origPosition = ChooseLanguage.Alphabet.enAlphabet.indexOf(letter);
+                int newPosition = (origPosition + key) % ChooseLanguage.Alphabet.enAlphabet.size();
+                char newLetter = ChooseLanguage.Alphabet.enAlphabet.get(newPosition);
+                newString.append(newLetter);
+            } else newString.append(letter);
         }
         FileOutputStream fileOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream(file_name + "_cipher");
+            fileOutputStream = new FileOutputStream(fileName.substring(0, (fileName.lastIndexOf('.'))) + "_cipher"
+                    + fileName.substring((fileName.lastIndexOf('.'))));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         try {
-            fileOutputStream.write(new_string.toString().getBytes(StandardCharsets.UTF_8));
+            fileOutputStream.write(newString.toString().getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("____________________________");
+        System.out.println("Шифрование выполнено успешно " + "\u2705");
+        System.out.println("Файл с зашифрованным успешно создан " + "\u2705");
     }
 }
 

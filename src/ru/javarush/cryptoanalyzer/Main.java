@@ -1,10 +1,5 @@
 package ru.javarush.cryptoanalyzer;
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.util.Scanner;
 
 
@@ -32,10 +27,10 @@ public class Main {
             System.out.println(CHOOSE_LANGUAGE);
             ChooseLanguage.language();
                 if (ChooseLanguage.language.equals("russian")){
-                    Encryption.encryption_ru();
+                    Encryption.encryptionRu();
                 }
                 else {
-                    Encryption.encryption_en();
+                    Encryption.encryptionEn();
                 }
         }
         else if (number_of_mode == 2){
@@ -43,10 +38,10 @@ public class Main {
             System.out.println(CHOOSE_LANGUAGE);
             ChooseLanguage.language();
             if (ChooseLanguage.language.equals("english")){
-                Decryption.decryption_en();
+                Decryption.decryptionEn();
             }
             else {
-                Decryption.decryption_ru();
+                Decryption.decryptionRu();
             }
 
         }
@@ -55,10 +50,10 @@ public class Main {
             System.out.println(CHOOSE_LANGUAGE);
             ChooseLanguage.language();
             if (ChooseLanguage.language.equals("english")){
-                BrutForce.brut_force_en();
+                BrutForce.brutForceEn();
             }
             else {
-                BrutForce.brut_force_ru();
+                BrutForce.brutForceRu();
             }
         }
         else {
